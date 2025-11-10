@@ -1,30 +1,26 @@
 package mate.academy.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
 
 @Entity
-@Table(name = "movies")
-public class Movie {
+@Table(name = "cinema_hall")
+public class CinemaHall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
+    private int capacity;
     private String description;
+    @OneToMany(mappedBy = "cinemaHall", cascade = CascadeType.ALL)
+    private List<MovieSession> movieSession;
 
-    public Movie() {
-    }
-
-    public Movie(String title, String description) {
-        this.title = title;
-        this.description = description;
-    }
-
-    public Movie(String title) {
-        this.title = title;
+    public CinemaHall() {
     }
 
     public Long getId() {
@@ -35,12 +31,12 @@ public class Movie {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
     public String getDescription() {
@@ -51,12 +47,11 @@ public class Movie {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{"
-                + "id=" + id
-                + ", title='" + title + '\''
-                + ", description='" + description + '\''
-                + '}';
+    public List<MovieSession> getMovieSession() {
+        return movieSession;
+    }
+
+    public void setMovieSession(List<MovieSession> movieSession) {
+        this.movieSession = movieSession;
     }
 }
