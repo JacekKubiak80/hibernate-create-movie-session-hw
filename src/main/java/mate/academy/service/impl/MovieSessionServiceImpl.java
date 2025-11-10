@@ -1,6 +1,6 @@
 package mate.academy.service.impl;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.dao.MovieSessionDao;
@@ -34,13 +34,13 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     }
 
     @Override
-    public List<MovieSession> findAvailableSessions(Long movieId, LocalDateTime dateTime) {
+    public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {
         try {
-            return movieSessionDao.findAvailableSessions(movieId, dateTime);
+            return movieSessionDao.findAvailableSessions(movieId, date);
         } catch (Exception e) {
             throw new DataProcessingException(
                     "Can't find available sessions for movie id "
-                            + movieId + " after " + dateTime, e);
+                            + movieId + " after " + date, e);
         }
     }
 }
