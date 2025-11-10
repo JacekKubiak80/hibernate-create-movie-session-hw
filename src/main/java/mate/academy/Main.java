@@ -66,7 +66,7 @@ public class Main {
         System.out.println("Available sessions for 'Fast and Furious':");
         List<MovieSession> availableSessions = movieSessionService.findAvailableSessions(
                 fastAndFurious.getId(),
-                LocalDate.now());
+                LocalDate.now().plusDays(1));
         availableSessions.forEach(System.out::println);
 
         System.out.println("Get cinema hall by ID:");
